@@ -3,7 +3,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-import { Heart, Calendar } from "lucide-react";
+import { Heart, Calendar, Camera } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const LoveForm = () => {
   const [isConfirmed, setIsConfirmed] = useState(false); // false = "Yes", true = "No"
@@ -68,6 +69,14 @@ const LoveForm = () => {
           <p className="text-muted-foreground text-lg">
             Discover the magic between two hearts
           </p>
+          <div className="flex justify-center mt-4">
+            <Link to="/detection">
+              <Button variant="outline" size="sm" className="gap-2">
+                <Camera className="w-4 h-4" />
+                Try Object Detection
+              </Button>
+            </Link>
+          </div>
         </div>
 
         <Card className="bg-gradient-card shadow-romantic border-0">
