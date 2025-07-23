@@ -8,33 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Love theme - romantic colors */
+    --background: 350 100% 98%;
+    --foreground: 340 15% 25%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 340 15% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 340 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 346 77% 50%;
+    --primary-foreground: 355 100% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 350 60% 95%;
+    --secondary-foreground: 340 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 350 40% 96%;
+    --muted-foreground: 340 8% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 350 60% 92%;
+    --accent-foreground: 340 15% 25%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 350 30% 90%;
+    --input: 350 30% 95%;
+    --ring: 346 77% 50%;
+
+    /* Love theme gradients */
+    --gradient-romantic: linear-gradient(135deg, hsl(346, 77%, 50%), hsl(340, 70%, 60%));
+    --gradient-soft: linear-gradient(180deg, hsl(350, 100%, 98%), hsl(350, 60%, 95%));
+    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(350, 60%, 98%));
+
+    /* Love theme shadows */
+    --shadow-romantic: 0 10px 30px -10px hsl(346, 77%, 50%, 0.2);
+    --shadow-soft: 0 4px 20px -4px hsl(346, 30%, 70%, 0.15);
+
+    /* Animations */
+    --transition-romantic: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
