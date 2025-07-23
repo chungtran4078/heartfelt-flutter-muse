@@ -50,14 +50,7 @@ const LoveForm = () => {
               Are you sure?
             </CardTitle>
             <div className="flex items-center justify-center gap-6 mt-6">
-              <div className="flex items-center gap-4">
-                <Button
-                  variant="soft"
-                  size="lg"
-                  className="min-w-[100px] rounded-full"
-                >
-                  Switch button
-                </Button>
+              <div className="flex items-center justify-center">
                 <div className="flex items-center bg-white rounded-full p-1 shadow-soft border">
                   <Button
                     variant={!isConfirmed ? "romantic" : "ghost"}
