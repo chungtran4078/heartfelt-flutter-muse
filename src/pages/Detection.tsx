@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Camera, ArrowLeft, Play, Square } from "lucide-react";
@@ -7,14 +7,32 @@ import { Link } from "react-router-dom";
 const Detection = () => {
   const [isDetecting, setIsDetecting] = useState(false);
   const [status, setStatus] = useState("Ready to start detection");
+  const [countdown, setCountdown] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (isDetecting) {
+      setCountdown(3);
+      
+      const timer1 = setTimeout(() => setCountdown(2), 1000);
+      const timer2 = setTimeout(() => setCountdown(1), 2000);
+      const timer3 = setTimeout(() => {
+        setCountdown(null);
+        setStatus("Object detected!");
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
+    } else {
+      setCountdown(null);
+    }
+  }, [isDetecting]);
 
   const handleStartDetection = () => {
     setIsDetecting(true);
     setStatus("Detecting object...");
-    // Simulate detection process
-    setTimeout(() => {
-      setStatus("Object detected!");
-    }, 2000);
   };
 
   const handleStopDetection = () => {
@@ -58,14 +76,25 @@ const Detection = () => {
               </div>
             ) : (
               <div className="text-center space-y-4">
-                <div className="relative">
-                  <div className="w-32 h-32 border-4 border-primary/30 rounded-full flex items-center justify-center">
-                    <Camera className="w-16 h-16 text-primary" />
+                {countdown !== null ? (
+                  <div className="flex items-center justify-center">
+                    <span 
+                      key={countdown}
+                      className="text-8xl font-bold text-primary animate-scale-in"
+                    >
+                      {countdown}
+                    </span>
                   </div>
-                  <div className="absolute inset-0 border-4 border-transparent rounded-full animate-spin border-t-primary"></div>
-                </div>
+                ) : (
+                  <div className="relative">
+                    <div className="w-32 h-32 border-4 border-primary/30 rounded-full flex items-center justify-center">
+                      <Camera className="w-16 h-16 text-primary" />
+                    </div>
+                    <div className="absolute inset-0 border-4 border-transparent rounded-full animate-spin border-t-primary"></div>
+                  </div>
+                )}
                 <p className="text-xl text-foreground font-medium">
-                  Scanning for objects...
+                  {countdown !== null ? "Starting detection..." : "Scanning for objects..."}
                 </p>
               </div>
             )}
