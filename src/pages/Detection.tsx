@@ -59,10 +59,10 @@ const Detection = () => {
             ) : (
               <div className="text-center space-y-4">
                 <div className="relative">
-                  <div className="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center animate-pulse">
+                  <div className="w-32 h-32 border-4 border-primary/30 rounded-full flex items-center justify-center">
                     <Camera className="w-16 h-16 text-primary" />
                   </div>
-                  <div className="absolute inset-0 border-4 border-primary rounded-full animate-spin border-t-transparent"></div>
+                  <div className="absolute inset-0 border-4 border-transparent rounded-full animate-spin border-t-primary"></div>
                 </div>
                 <p className="text-xl text-foreground font-medium">
                   Scanning for objects...
