@@ -80,7 +80,7 @@ const Detection = () => {
                   <div className="flex items-center justify-center">
                     <span 
                       key={countdown}
-                      className="text-8xl font-bold text-primary animate-scale-in"
+                      className="text-8xl font-bold text-primary animate-[fade-in_0.3s_ease-out,fade-out_0.7s_ease-out_0.3s_forwards]"
                     >
                       {countdown}
                     </span>
