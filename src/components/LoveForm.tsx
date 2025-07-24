@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Heart, Calendar, Camera } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -21,29 +22,17 @@ const LoveForm = () => {
     year: "",
   });
 
-  const handleDateInput = (value: string, field: 'day' | 'month' | 'year', person: 'person1' | 'person2') => {
-    // Only allow numbers
-    const numericValue = value.replace(/[^0-9]/g, '');
-    
-    // Apply validation based on field
-    let validatedValue = numericValue;
-    if (field === 'day') {
-      const day = parseInt(numericValue);
-      if (day > 31) validatedValue = '31';
-      if (day < 1 && numericValue !== '') validatedValue = '1';
-    } else if (field === 'month') {
-      const month = parseInt(numericValue);
-      if (month > 12) validatedValue = '12';
-      if (month < 1 && numericValue !== '') validatedValue = '1';
-    } else if (field === 'year') {
-      const year = parseInt(numericValue);
-      if (year < 1900 && numericValue !== '') validatedValue = '1900';
-    }
+  // Generate options for dropdowns
+  const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
+  const months = Array.from({ length: 12 }, (_, i) => (i + 1).toString());
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: currentYear - 1899 }, (_, i) => (currentYear - i).toString());
 
+  const handleDateSelect = (value: string, field: 'day' | 'month' | 'year', person: 'person1' | 'person2') => {
     if (person === 'person1') {
-      setPerson1({ ...person1, [field]: validatedValue });
+      setPerson1({ ...person1, [field]: value });
     } else {
-      setPerson2({ ...person2, [field]: validatedValue });
+      setPerson2({ ...person2, [field]: value });
     }
   };
 
@@ -131,29 +120,38 @@ const LoveForm = () => {
                       <h4 className="text-lg font-medium text-foreground">Date 1:</h4>
                     </div>
                     <div className="flex gap-2 justify-center">
-                      <Input
-                        placeholder="25"
-                        value={person1.day}
-                        onChange={(e) => handleDateInput(e.target.value, 'day', 'person1')}
-                        className="w-16 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={2}
-                      />
+                      <Select value={person1.day} onValueChange={(value) => handleDateSelect(value, 'day', 'person1')}>
+                        <SelectTrigger className="w-16 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Day" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {days.map((day) => (
+                            <SelectItem key={day} value={day}>{day}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <span className="text-2xl text-muted-foreground self-center">/</span>
-                      <Input
-                        placeholder="12"
-                        value={person1.month}
-                        onChange={(e) => handleDateInput(e.target.value, 'month', 'person1')}
-                        className="w-16 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={2}
-                      />
+                      <Select value={person1.month} onValueChange={(value) => handleDateSelect(value, 'month', 'person1')}>
+                        <SelectTrigger className="w-16 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Mon" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {months.map((month) => (
+                            <SelectItem key={month} value={month}>{month}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <span className="text-2xl text-muted-foreground self-center">/</span>
-                      <Input
-                        placeholder="1995"
-                        value={person1.year}
-                        onChange={(e) => handleDateInput(e.target.value, 'year', 'person1')}
-                        className="w-20 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={4}
-                      />
+                      <Select value={person1.year} onValueChange={(value) => handleDateSelect(value, 'year', 'person1')}>
+                        <SelectTrigger className="w-20 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Year" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {years.map((year) => (
+                            <SelectItem key={year} value={year}>{year}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 </div>
@@ -180,29 +178,38 @@ const LoveForm = () => {
                       <h4 className="text-lg font-medium text-foreground">Date 1:</h4>
                     </div>
                     <div className="flex gap-2 justify-center">
-                      <Input
-                        placeholder="25"
-                        value={person1.day}
-                        onChange={(e) => handleDateInput(e.target.value, 'day', 'person1')}
-                        className="w-16 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={2}
-                      />
+                      <Select value={person1.day} onValueChange={(value) => handleDateSelect(value, 'day', 'person1')}>
+                        <SelectTrigger className="w-16 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Day" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {days.map((day) => (
+                            <SelectItem key={day} value={day}>{day}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <span className="text-2xl text-muted-foreground self-center">/</span>
-                      <Input
-                        placeholder="12"
-                        value={person1.month}
-                        onChange={(e) => handleDateInput(e.target.value, 'month', 'person1')}
-                        className="w-16 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={2}
-                      />
+                      <Select value={person1.month} onValueChange={(value) => handleDateSelect(value, 'month', 'person1')}>
+                        <SelectTrigger className="w-16 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Mon" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {months.map((month) => (
+                            <SelectItem key={month} value={month}>{month}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <span className="text-2xl text-muted-foreground self-center">/</span>
-                      <Input
-                        placeholder="1995"
-                        value={person1.year}
-                        onChange={(e) => handleDateInput(e.target.value, 'year', 'person1')}
-                        className="w-20 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={4}
-                      />
+                      <Select value={person1.year} onValueChange={(value) => handleDateSelect(value, 'year', 'person1')}>
+                        <SelectTrigger className="w-20 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Year" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {years.map((year) => (
+                            <SelectItem key={year} value={year}>{year}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 </div>
@@ -226,29 +233,38 @@ const LoveForm = () => {
                       <h4 className="text-lg font-medium text-foreground">Date 2:</h4>
                     </div>
                     <div className="flex gap-2 justify-center">
-                      <Input
-                        placeholder="25"
-                        value={person2.day}
-                        onChange={(e) => handleDateInput(e.target.value, 'day', 'person2')}
-                        className="w-16 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={2}
-                      />
+                      <Select value={person2.day} onValueChange={(value) => handleDateSelect(value, 'day', 'person2')}>
+                        <SelectTrigger className="w-16 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Day" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {days.map((day) => (
+                            <SelectItem key={day} value={day}>{day}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <span className="text-2xl text-muted-foreground self-center">/</span>
-                      <Input
-                        placeholder="12"
-                        value={person2.month}
-                        onChange={(e) => handleDateInput(e.target.value, 'month', 'person2')}
-                        className="w-20 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={2}
-                      />
+                      <Select value={person2.month} onValueChange={(value) => handleDateSelect(value, 'month', 'person2')}>
+                        <SelectTrigger className="w-16 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Mon" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {months.map((month) => (
+                            <SelectItem key={month} value={month}>{month}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <span className="text-2xl text-muted-foreground self-center">/</span>
-                      <Input
-                        placeholder="1999"
-                        value={person2.year}
-                        onChange={(e) => handleDateInput(e.target.value, 'year', 'person2')}
-                        className="w-20 text-center py-4 rounded-lg bg-white/50 border-primary/20"
-                        maxLength={4}
-                      />
+                      <Select value={person2.year} onValueChange={(value) => handleDateSelect(value, 'year', 'person2')}>
+                        <SelectTrigger className="w-20 py-4 rounded-lg bg-white/50 border-primary/20">
+                          <SelectValue placeholder="Year" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white border-primary/20">
+                          {years.map((year) => (
+                            <SelectItem key={year} value={year}>{year}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 </div>
