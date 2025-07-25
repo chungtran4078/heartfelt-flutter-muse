@@ -287,6 +287,13 @@ const LoveForm = () => {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Footer */}
+      <div className="text-center mt-8 pb-4">
+        <p className="text-muted-foreground text-sm flex items-center justify-center gap-1">
+          From Chung Tran with <Heart className="w-4 h-4 text-primary" />
+        </p>
+      </div>
     </div>
   );
 };
