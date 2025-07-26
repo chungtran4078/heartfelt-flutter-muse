@@ -288,7 +288,6 @@ const LoveForm = () => {
           </Card>
         </div>
       </div>
-    </div>
   );
 };
 
