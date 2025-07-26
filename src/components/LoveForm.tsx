@@ -44,9 +44,8 @@ const LoveForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-soft relative">
-      <div className="flex items-center justify-center p-4 pb-20">
-        <div className="w-full max-w-2xl space-y-8 animate-fade-in">
+    <div className="min-h-screen bg-gradient-soft flex items-center justify-center p-4 pb-20">
+      <div className="w-full max-w-2xl space-y-8 animate-fade-in">
           {/* Header */}
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -288,13 +287,6 @@ const LoveForm = () => {
             </CardContent>
           </Card>
         </div>
-      </div>
-      
-      {/* Footer positioned at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 text-center pb-4">
-        <p className="text-muted-foreground text-sm flex items-center justify-center gap-1">
-          From Chung Tran with <Heart className="w-4 h-4 text-primary" />
-        </p>
       </div>
     </div>
   );
